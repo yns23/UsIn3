@@ -38,19 +38,20 @@ public class LoginBean {
 
         }
 
-        loggedIn = true;
-
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Eingabe darf nicht leer sein", null);
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Benutzername eingeben", null);
+        FacesMessage msg1 = new FacesMessage(FacesMessage.SEVERITY_INFO, "Passwort eingeben", null);
 
         FacesContext fc = FacesContext.getCurrentInstance();
+
         fc.addMessage(null,msg);
+        fc.addMessage(null,msg1);
+
+        loggedIn = true;
+
+
 
 
     }
-
-
-
-
 
 
     public String getName() {

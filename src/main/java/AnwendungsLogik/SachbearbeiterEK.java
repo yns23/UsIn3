@@ -6,9 +6,6 @@ import java.util.TreeSet;
 public class SachbearbeiterEK{
 
 
-    public TreeSet<Sachbearbeiter> getDatenbank() {
-        return Datenbank;
-    }
 
     private TreeSet<Sachbearbeiter> Datenbank;
     private String Benutzername;
@@ -17,9 +14,11 @@ public class SachbearbeiterEK{
     private boolean Berechtigung;
     private Object Sachbearbeiter;
 
+    public TreeSet<Sachbearbeiter> getDatenbank() {
+        return Datenbank;
+    }
 
     protected SachbearbeiterEK(){
-        Datenbank = new TreeSet<Sachbearbeiter>();
         Sachbearbeiter antily = new Sachbearbeiter("antily","hallo123",true, null);
         Sachbearbeiter glatzr = new Sachbearbeiter("glatzr","hallo123",true, null);
         Sachbearbeiter grosaa = new Sachbearbeiter("grosaa","hallo123",false, null);
