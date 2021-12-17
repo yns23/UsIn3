@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>Fortbildung löschen</title>
+
+    <h:panelGrid id = "panel" columns = "1" border = "5"
+                 cellpadding = "10" cellspacing = "2" width="100%"  hight="100%" style="text-align: center;border-color: darkorange;background: lightgray;">
+        <h:panelGroup style = "display:block; text-align:center">
+            <h:outputText class="title" value="Sie sind als #{loginBean.name} angemeldet : " />
+            <a href="LoginASS.xhtml">Logout</a>
+        </h:panelGroup>
+    </h:panelGrid>
+
+    <ui:include src="MenüBar.xhtml"/>
+
+</h:head>
+<h:body>
+
+</h:body>
+</html>

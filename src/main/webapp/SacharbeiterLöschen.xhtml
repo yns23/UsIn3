@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+   <title>Sacharbeiter Editieren</title>
+   <h:panelGrid id = "panel" columns = "1" border = "5"
+                cellpadding = "10" cellspacing = "2" width="100%"  hight="100%" style="text-align: center;border-color: darkorange;background: lightgray;">
+      <h:panelGroup style = "display:block; text-align:center">
+         <h:outputText class="title" value="Sie sind als #{loginBean.name} angemeldet : " />
+         <a href="LoginASS.xhtml">Logout</a>
+      </h:panelGroup>
+   </h:panelGrid>
+
+   <ui:include src="MenüBar.xhtml"/>
+   <h:panelGrid id = "panel2" columns = "2" border = "5"
+                cellpadding = "2" cellspacing = "2" width="100%"  hight="100%" style="text-align: center;border-color: darkorange;background: lightgray;">
+      <h:panelGroup>
+         <h:outputLabel value="Zu löschenden Nutzer auswählen :"/>
+      </h:panelGroup>
+      <h:panelGroup>
+         <p:selectOneMenu id="selectUser" value="#{löschenBean.ausgewählt}" required="true" label="list"
+                          requiredMessage="Bitte Auswählen!">
+            <f:selectItems value="#{editierenBean.list}"/>
+         </p:selectOneMenu>
+      </h:panelGroup>
+      <h:panelGroup>
+         <form method="get" action="AdminAS.xhtml">
+            <button type="submit">Abbrechen</button>
+         </form>
+         <h:button class="button" value="Bestätigen" action="#{löschenBean.löschenBestätigen()}" onclick="alert('Benutzer wurder erfolgreich gelöscht')" />
+      </h:panelGroup>
+   </h:panelGrid>
+   <h:messages style = "color:#a70000;margin:8px;" />
+</h:head>
+</html>

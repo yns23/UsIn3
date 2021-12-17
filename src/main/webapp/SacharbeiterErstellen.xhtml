@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Sacharbeiter erstellen</title>
+
+    <h:panelGrid id = "panel" columns = "1" border = "5"
+                 cellpadding = "10" cellspacing = "2" width="100%"  hight="100%" style="text-align: center;border-color: darkorange;background: lightgray;">
+        <h:panelGroup style = "display:block; text-align:center">
+            <h:outputText class="title" value="Sie sind als #{loginBean.name} angemeldet : " />
+            <a href="LoginASS.xhtml">Logout</a>
+        </h:panelGroup>
+    </h:panelGrid>
+    <ui:include src="MenüBar.xhtml"/>
+
+</h:head>
+<h:body>
+<h:panelGrid id = "panel2" columns = "2" border = "5"
+             cellpadding = "10" cellspacing = "1" width="100%"  hight="100%" style="text-align: center;border-color: darkorange;background: lightgray;">
+        <h:outputLabel value = "Neuer Benutzername: "/>
+        <h:inputText  class="LoginInput" value="#{erstellenBean.name}" required="true" requiredMessage="Benutzername eingeben!"/>
+        <h:outputLabel value = "Neues Passwort: "/>
+        <h:inputSecret  class="LoginInput" value="#{erstellenBean.passwort}" required="true" requiredMessage="Passwort eingeben!"/>
+        <h:selectOneRadio  value="#{erstellenBean.berechtigung}">Berechtigung:
+            <f:selectItem   itemValue="false" >Sachbearbeiter</f:selectItem>
+            <f:selectItem  itemValue="true" >Admin</f:selectItem>
+
+        </h:selectOneRadio>
+    <h:panelGroup style = "display:block; text-align:center">
+        <form method="get" action="AdminAS.xhtml">
+            <button>Abbrechen</button>
+        </form>
+        <h:commandButton class="button" value = "Erstellen" onclick="alert('Benutzer wurde erfolgreich erstellt!')" action="#{erstellenBean.neuerSacharbeiter()}" actionListener="#{erstellenBean.displayMessage}"/>
+    </h:panelGroup>
+</h:panelGrid>
+    <h:messages style = "color:#a70000;margin:8px;" for="panel2" />
+</h:body>
+</html>
