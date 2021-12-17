@@ -1,21 +1,31 @@
 package ExterneSchnittstelle;
 
-import AnwendungsLogik.AdminSachbearbeiterLöschenK;
-import AnwendungsLogik.Fortbildung;
-import AnwendungsLogik.FortbildungAuswählenK;
+import AnwendungsLogik.*;
 
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.model.SelectItem;
 import java.util.List;
 
 @ManagedBean(name = "buchenBean")
-@ApplicationScoped
-
+@RequestScoped
 public class BuchenBean {
-    private Fortbildung ausgewählt;
+    private String name;
     private List<SelectItem> list;
     private String auswahl;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setList(List<SelectItem> list) {
+        this.list = list;
+    }
+
 
     public String getAuswahl() {
         return auswahl;
@@ -25,17 +35,17 @@ public class BuchenBean {
         this.auswahl = auswahl;
     }
 
-    public Fortbildung getAusgewählt() {
-        return ausgewählt;
-    }
-
-    public void setAusgewählt(Fortbildung ausgewählt) {
-        this.ausgewählt = ausgewählt;
-    }
 
     public List<SelectItem> getList() throws Exception {
         list = new FortbildungAuswählenK().getList();
         return list;
+    }
+
+    public void buchenBestätigen() throws Exception {
+       Fortbildung ausgewählt = new FortbildungAuswählenK().AusgewählteForbildungen(auswahl);
+        Sachbearbeiter zuordnung = new SachbearbeiterAuswählenK().SachbearbeiterAuswählen(name);
+        new FortbildungZuordnungK().FortbildungZuordnen(ausgewählt,zuordnung);
+
     }
 
 }

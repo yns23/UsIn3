@@ -4,13 +4,12 @@ import AnwendungsLogik.AdminSachbearbeiterLöschenK;
 import AnwendungsLogik.Sachbearbeiter;
 import AnwendungsLogik.SachbearbeiterAuswählenK;
 
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.model.SelectItem;
 
 @ManagedBean(name = "löschenBean")
-@ApplicationScoped
-
+@RequestScoped
 public class LöschenBean {
 
     private Sachbearbeiter ausgewählt;

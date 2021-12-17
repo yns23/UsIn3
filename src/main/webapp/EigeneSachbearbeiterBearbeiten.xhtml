@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Sacharbeiter editieren</title>
+    <h:panelGrid id = "panel" columns = "1" border = "5"
+                 cellpadding = "10" cellspacing = "2" width="100%"  hight="100%" style="text-align: center;border-color: darkorange;background: lightgray;">
+        <h:panelGroup style = "display:block; text-align:center">
+            <h:outputText class="title" value="Sie sind als #{loginBean.berechtigung} mit dem Account #{loginBean.name} angemeldet : " />
+            <a href="LoginASS.xhtml">Logout</a>
+        </h:panelGroup>
+    </h:panelGrid>
+
+    <ui:include src="MenüBar.xhtml"/>
+    <h:panelGrid id = "panel2" columns = "2" border = "5"
+                 cellpadding = "2" cellspacing = "2" width="100%"  hight="100%" style="text-align: center;border-color: darkorange;background: lightgray;">
+        <h:panelGroup>
+            <h:outputLabel value="Wählen Sie einen benutzer aus :"/>
+        </h:panelGroup>
+        <h:panelGroup>
+            <h:outputLabel value="#{loginBean.name}"/>
+        </h:panelGroup>
+        <h:outputLabel value = "Neuer Benutzername: "/>
+        <h:inputText  class="LoginInput" value="#{editierenBean.neuerBenutzername}" required="true" requiredMessage="Benutzername eingeben!"/>
+        <h:outputLabel value = "Neues Passwort: "/>
+        <h:inputSecret  class="LoginInput" value="#{editierenBean.neuesPasswort}" required="true" requiredMessage="Passwort eingeben!"/>
+
+        <h:panelGroup>
+            <form method="get" action="SacharbeiterAS.xhtml">
+                <button type="submit">Abbrechen</button>
+            </form>
+            <h:commandButton class="button" value="Bestätigen" action="#{editierenBean.ändern}" onclick="alert('Daten wurden erfolgreich geändert')"/>
+        </h:panelGroup>
+
+
+    </h:panelGrid>
+</h:head>
+</html>

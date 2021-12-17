@@ -5,13 +5,13 @@ import AnwendungsLogik.NormalSachbearbeiterEditierenK;
 import AnwendungsLogik.Sachbearbeiter;
 import AnwendungsLogik.SachbearbeiterAuswählenK;
 
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.model.SelectItem;
 import java.util.List;
 
 @ManagedBean(name = "editierenBean")
-    @ApplicationScoped
+@RequestScoped
 
     public class EditierenBean {
     private String altBenutzername;

@@ -1,11 +1,13 @@
 package ExterneSchnittstelle;
+
 import AnwendungsLogik.LoginK;
 import AnwendungsLogik.Sachbearbeiter;
 
-
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.servlet.Filter;
 
 @ManagedBean(name = "loginBean")
 @ApplicationScoped
@@ -15,14 +17,39 @@ public class LoginBean {
     private String name;
     private String passwort;
     private Sachbearbeiter aktiverNutzer;
+    private String berechtigung;
+    private boolean loggedIn = false;
+
+
+
+
 
     public void LoggingIn() throws Exception {
         aktiverNutzer = new LoginK().getLoginNutzer(name);
         new LoginK().LoginPass(name,passwort);
-        FacesContext.getCurrentInstance().getExternalContext().redirect("AdminAS.xhtml");
+        if (aktiverNutzer.getBerechtigung()){
+            FacesContext.getCurrentInstance().getExternalContext().redirect("AdminAS.xhtml");
+            berechtigung = "ADMIN";
+
+        }
+        else{
+            FacesContext.getCurrentInstance().getExternalContext().redirect("SacharbeiterAS.xhtml");
+            berechtigung = "SACHARBEITER";
+
+        }
+
+        loggedIn = true;
+
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Eingabe darf nicht leer sein", null);
+
+        FacesContext fc = FacesContext.getCurrentInstance();
+        fc.addMessage(null,msg);
 
 
     }
+
+
+
 
 
 
@@ -51,7 +78,13 @@ public class LoginBean {
     }
 
 
+    public String getBerechtigung() {
+        return berechtigung;
+    }
 
+    public void setBerechtigung(String berechtigung) {
+        this.berechtigung = berechtigung;
+    }
 }
 
 

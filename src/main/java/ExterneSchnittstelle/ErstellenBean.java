@@ -3,14 +3,13 @@ package ExterneSchnittstelle;
 import AnwendungsLogik.AdminSachbearbeiterErzeugenK;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import java.awt.event.ActionEvent;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 @ManagedBean(name = "erstellenBean")
-@ApplicationScoped
+@RequestScoped
 
 public class ErstellenBean {
 
@@ -43,9 +42,8 @@ public class ErstellenBean {
         this.berechtigung = berechtigung;
     }
 
-    public void neuerSacharbeiter() throws Exception {
+    public void neuerSacharbeiter()  {
         new AdminSachbearbeiterErzeugenK().AdminSachbearbeiterErzeugen(name,passwort,berechtigung);
-        System.out.println("HOOOOOOOOP");
     }
 
     public void displayMessage(ActionEvent actionEvent){

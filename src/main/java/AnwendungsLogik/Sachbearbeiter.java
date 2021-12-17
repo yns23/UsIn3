@@ -41,7 +41,7 @@ public class Sachbearbeiter implements Comparable<Sachbearbeiter> {
     protected String getPasswort(){
         return Passwort;
     }
-    protected boolean getBerechtigung(){
+    public boolean getBerechtigung(){
         return Berechtigung;
     }
 
