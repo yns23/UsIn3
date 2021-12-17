@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
     <title>Fortbildung zuordnen</title>
@@ -18,6 +20,28 @@
 
 </h:head>
 <h:body>
+    <h:panelGrid id = "panel2" columns = "2" border = "5"
+                 cellpadding = "2" cellspacing = "2" width="100%"  hight="100%" style="text-align: center;border-color: darkorange;background: lightgray;">
+    <h:panelGroup>
+        <h:outputLabel value="Wählen Sie Fortbildung aus :"/>
+    </h:panelGroup>
 
+        <p:selectOneMenu id="selectFortbildung" value="#{buchenBean.auswahl}" required="true" label="list"
+                         requiredMessage="Bitte Auswählen!">
+            <f:selectItems value="#{buchenBean.list}"/>
+        </p:selectOneMenu>
+        <h:outputLabel value="Wählen Sie einen Benutzer aus :"/>
+
+        <p:selectOneMenu id="selectNutzer" value="#{editierenBean.altBenutzername}" required="true" label="list"
+                         requiredMessage="Bitte Auswählen!">
+            <f:selectItems value="#{editierenBean.list}"/>
+        </p:selectOneMenu>
+
+
+    <form method="get" action="AdminAS.xhtml">
+        <button>Abbrechen</button>
+    </form>
+    <h:commandButton class="button" value = "buchen" onclick="alert('Fortbildung wurde erfolgreich gebucht!')" action="#{erstellenBean.neuerSacharbeiter()}" actionListener="#{erstellenBean.displayMessage}"/>
+    </h:panelGrid>
 </h:body>
 </html>

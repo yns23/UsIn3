@@ -1,7 +1,10 @@
 package AnwendungsLogik;
 
+import javax.faces.model.SelectItem;
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.TreeSet;
 
 public class FortbildungAuswählenK {
@@ -17,16 +20,16 @@ public class FortbildungAuswählenK {
         return Ausgewählt;
     }
 
-    protected JList<String> getList() throws Exception {
-        FortbildungEK Ausgabe = new FortbildungEK();
+    public List<SelectItem> getList() throws Exception {
+        FortbildungEK List = new FortbildungEK();
 
 
-        DefaultListModel<String> listModel = new DefaultListModel<String>();
-        for (Iterator<Fortbildung> it = Ausgabe.getFortbildungen().iterator(); it.hasNext(); ) {
-            listModel.addElement(it.next().getTitel());
+        ArrayList<SelectItem> listModel = new ArrayList<>();
+        for (Iterator<Fortbildung> it = List.getFortbildungen().iterator(); it.hasNext(); ) {
+            listModel.add(new SelectItem(it.next().getTitel()));
         }
-        JList<String> list = new JList<String>(listModel);
-        return list;
+
+        return listModel;
 
     }
 }
